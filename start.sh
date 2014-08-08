@@ -1,6 +1,6 @@
 #!/bin/bash
 
-script_name="auth.php"
+endpoint="auth.php"
 port_num=$([ $# -eq 2 ] && echo "$2" || echo "5000")
 
 function main() {
@@ -48,9 +48,8 @@ function export_credentials() {
 }
 
 function start_server() {
-    trap 'exit' ERR
     echo "starting php server on http://127.0.0.1:$port_num"
-    echo "$(tput setaf 2)GET http://127.0.0.1:$port_num/auth.php$(tput sgr0) to fetch a capability token for your iOS/Android app"
+    echo "$(tput setaf 2)GET http://127.0.0.1:$port_num/$endpoint$(tput sgr0) to fetch a capability token for your iOS/Android app"
     php -S 127.0.0.1:$port_num
 }
 
