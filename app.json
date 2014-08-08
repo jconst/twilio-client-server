@@ -1,0 +1,7 @@
+{
+  "name": "Twilio Client Server",
+  "description": "A simple php server to distribute capability tokens and route calls for your mobile app",
+  "repository": "https://github.com/jconst/twilio-client-server",
+  "logo": "https://www.twilio.com/packages/company/img/logos_downloadable_logobrand.png",
+  "keywords": ["twilio", "client", "mobile"]
+}
