@@ -1,7 +1,7 @@
 <?php
 header('Content-type: text/xml');
 
-$callee = $_REQUEST["To"];
+$callee = $_REQUEST["to"];
 ?>
 
 <Response>

@@ -1,33 +1,60 @@
 #!/bin/bash
 
 script_name="auth.php"
+port_num="5000"
 
 function main() {
-	inject_credentials
-	start_server
+    check_tools
+    check_args $1
+    trap 'exit' ERR
+    export_credentials
+    start_server &
+    start_ngrok
 }
 
-function inject_credentials() {
-	if grep REPLACE_WITH_ $script_name > /dev/null; then
-		echo "What is your twilio account sid?"
-		read account_sid
+function check_tools() {
+    if ! type ngrok &>/dev/null; then
+        echo "Please install ngrok and create an account before running this script"
+        echo "$(tput setaf 4)http://ngrok.com$(tput sgr0)"
+        exit 1
+    fi
+}
 
-		echo "What is your auth token?"
-		read auth_token
+function check_args() {
+    if [ $# -ne 1 ]; then
+        echo "please specify your preferred ngrok subdomain name, like so:"
+        echo "./this-script.sh mysubdomain"
+        exit 1
+    fi
+    subdomain=$1
+}
 
-		echo "What is your TwiML app sid?"
-		read app_sid
+function export_credentials() {
+    if  [ -z $ACCOUNT_SID ] || [ -z $AUTH_TOKEN ] || [ -z $APP_SID ]; then
+        echo "What is your twilio account sid?"
+        read account_sid
 
-		sed -i '' s/REPLACE_WITH_ACCOUNT_SID/$account_sid/ $script_name
-		sed -i '' s/REPLACE_WITH_AUTH_TOKEN/$auth_token/   $script_name
-		sed -i '' s/REPLACE_WITH_APP_SID/$app_sid/         $script_name
-	fi
+        echo "What is your auth token?"
+        read auth_token
+
+        echo "What is your TwiML app sid?"
+        read app_sid
+
+        export ACCOUNT_SID=$account_sid
+        export AUTH_TOKEN=$auth_token
+        export APP_SID=$app_sid
+    fi
 }
 
 function start_server() {
-	echo "starting php server on http://localhost:5000"
-	echo "$(tput setaf 2)GET http://localhost:5000/auth.php$(tput sgr0) to fetch a capability token for your iOS/Android app"
-	php -S localhost:5000
+    trap 'exit' ERR
+    echo "starting php server on http://127.0.0.1:$port_num"
+    echo "$(tput setaf 2)GET http://127.0.0.1:$port_num/auth.php$(tput sgr0) to fetch a capability token for your iOS/Android app"
+    php -S 127.0.0.1:$port_num
 }
 
-main
+function start_ngrok() {
+    ngrok -subdomain=$subdomain $port_num
+}
+
+main $@

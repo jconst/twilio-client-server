@@ -4,11 +4,11 @@ require 'vendor/autoload.php';
 header('Content-Type: application/json');
 
 // AccountSid and AuthToken can be found in your account dashboard
-$accountSid = 'REPLACE_WITH_ACCOUNT_SID';
-$authToken = 'REPLACE_WITH_AUTH_TOKEN';
+$accountSid = getenv('ACCOUNT_SID');
+$authToken = getenv('AUTH_TOKEN');
 
 // The app outgoing connections will use:
-$appSid = 'REPLACE_WITH_APP_SID';
+$appSid = getenv('APP_SID');
 
 // The client name for incoming connections:
 $clientName = $_REQUEST['clientName'] ?: 'monkey';
