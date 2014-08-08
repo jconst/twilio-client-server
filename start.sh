@@ -1,7 +1,7 @@
 #!/bin/bash
 
 script_name="auth.php"
-port_num="5000"
+port_num=$([ $# -eq 2 ] && echo "$2" || echo "5000")
 
 function main() {
     check_tools
@@ -21,9 +21,10 @@ function check_tools() {
 }
 
 function check_args() {
-    if [ $# -ne 1 ]; then
+    if [ $# -lt 1 ] || [ $# -gt 2 ] || [ $1 == "--help" ] || [ $1 == "-h" ]
+    then
         echo "please specify your preferred ngrok subdomain name, like so:"
-        echo "./this-script.sh mysubdomain"
+        echo "./this-script.sh mysubdomain [port]"
         exit 1
     fi
     subdomain=$1
