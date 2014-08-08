@@ -10,12 +10,13 @@ Make sure you have [created a Twilio account](https://www.twilio.com/try-twilio)
 
 Usage
 -----
-Just clone this repo and run `./start.sh`.
+To deploy using [Heroku](https://heroku.com/), just click here:
 
-The script will ask for your Twilio credentials and start a php server on localhost. Just hit `http://localhost:5000` with a GET request in your iOS/Android app to download a capability token so you can start making calls with Twilio Client!
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-###Tip###
-Since this server will run on localhost by default, you can only make requests to it from a device simulator/emulator on the same machine. To get a temporary, publicly visible address in a couple of minutes, try out [ngrok](https://ngrok.com/). Just run something like `ngrok 5000`.
+Then, in the app's settings, create the config vars `ACCOUNT_SID`, `AUTH_TOKEN`, `APP_SID` and set them to their corresponding values from your Twilio account.
+
+Or, if you prefer, you can also test using [ngrok](https://ngrok.com/). Just create an ngrok account & install it, then clone this repo and run `./start.sh any-subdomain-you-want`. The script will take you through the process.
 
 ####WARNING####
-This is just a template aimed at mobile developers who want to get started using Twilio client without having to worry about setting up a server *right away*. If you put this code (unchanged) on your production server, someone **will** start using it in their own apps for free Twilio calls, charged to your account. In production, you should always ensure that your capability token server is securely protected.
+This is just a template aimed at mobile developers who want to get started using Twilio client without having to worry about setting up a server *right away*. If you put this code (unchanged) on your production server, someone **will** end up using your tokens in their own apps for free Twilio calls, charged to your account. In production, you should always ensure that your capability token server is securely protected.
