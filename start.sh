@@ -31,7 +31,7 @@ function check_args() {
 }
 
 function export_credentials() {
-    if  [ -z $ACCOUNT_SID ] || [ -z $AUTH_TOKEN ] || [ -z $APP_SID ]; then
+    if  [ -z $TWILIO_ACCOUNT_SID ] || [ -z $TWILIO_AUTH_TOKEN ] || [ -z $TWILIO_APP_SID ]; then
         echo "What is your twilio account sid?"
         read account_sid
 
@@ -41,9 +41,9 @@ function export_credentials() {
         echo "What is your TwiML app sid?"
         read app_sid
 
-        export ACCOUNT_SID=$account_sid
-        export AUTH_TOKEN=$auth_token
-        export APP_SID=$app_sid
+        export TWILIO_ACCOUNT_SID=$account_sid
+        export TWILIO_AUTH_TOKEN=$auth_token
+        export TWILIO_APP_SID=$app_sid
     fi
 }
 

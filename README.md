@@ -14,8 +14,6 @@ To deploy using [Heroku](https://heroku.com/), just click here:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-Then, in the app's settings, create the config vars `ACCOUNT_SID`, `AUTH_TOKEN`, `APP_SID` and set them to their corresponding values from your Twilio account.
-
 Or, if you prefer, you can also test using [ngrok](https://ngrok.com/). Just create an ngrok account & install it, then clone this repo and run `./start.sh any-subdomain-you-want`. The script will take you through the process.
 
 ####WARNING####

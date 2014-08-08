@@ -4,11 +4,11 @@ require 'vendor/autoload.php';
 header('Content-Type: application/json');
 
 // AccountSid and AuthToken can be found in your account dashboard
-$accountSid = getenv('ACCOUNT_SID');
-$authToken = getenv('AUTH_TOKEN');
+$accountSid = getenv('TWILIO_ACCOUNT_SID');
+$authToken = getenv('TWILIO_AUTH_TOKEN');
 
 // The app outgoing connections will use:
-$appSid = getenv('APP_SID');
+$appSid = getenv('TWILIO_APP_SID');
 
 // The client name for incoming connections:
 $clientName = $_REQUEST['clientName'] ?: 'monkey';
