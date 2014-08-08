@@ -1,12 +1,13 @@
 <?php
 header('Content-type: text/xml');
 
-$callee = $_REQUEST["to"];
+$callee   = $_REQUEST["to"];
+$callerId = $_REQUEST["callerId"];
 ?>
 
 <Response>
 <?php if ($callee) { ?>
-    <Dial>
+    <Dial callerId="<?php echo $callerId ?>">
     <?php if (preg_match("/^[\d\(\)\-\+ ]+$/", $callee)) { ?>
         <Number><?php echo $callee;?></Number>
     <?php } else { ?>
