@@ -11,7 +11,14 @@ $authToken = getenv('TWILIO_AUTH_TOKEN');
 $appSid = getenv('TWILIO_APP_SID');
 
 // The client name for incoming connections:
-$clientName = $_REQUEST['clientName'] ?: 'monkey';
+$clientName = $_REQUEST['clientName'] ?: 'default';
+
+// Save list registered clients sorted by most recent
+$filename = 'clients.txt';
+$lines = explode(",", @file_get_contents($filename));
+array_unshift($lines, $clientName);
+$clients = array_unique(array_filter($lines));
+file_put_contents($filename, implode(",", $clients));
 
 $capability = new Services_Twilio_Capability($accountSid, $authToken);
 
@@ -26,5 +33,5 @@ $capability->allowClientOutgoing($appSid, array(), $clientName);
 // the account and capabilities defined above
 $token = $capability->generateToken();
 
-echo json_encode(array('token'=>$token));
+echo json_encode(array('token'=>$token, 'clients'=>$clients));
 ?>
