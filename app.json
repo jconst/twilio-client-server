@@ -3,7 +3,11 @@
   "description": "A simple php server to distribute capability tokens and route calls for your mobile app",
   "repository": "https://github.com/jconst/twilio-client-server",
   "logo": "https://www.twilio.com/packages/company/img/logos_downloadable_logobrand.png",
-  "keywords": ["twilio", "client", "mobile"],
+  "keywords": [
+    "twilio",
+    "client",
+    "mobile"
+  ],
   "env": {
     "TWILIO_ACCOUNT_SID": {
       "description": "Your Twilio account id",
@@ -13,10 +17,9 @@
       "description": "Your Twilio authentication token",
       "required": true
     },
-    "TWILIO_AUTH_TOKEN": {
-      "description": "The app sid for the TwiML app that will points to this server",
+    "TWILIO_APP_SID": {
+      "description": "The app sid for the TwiML app (in Account->Dev Tools->TwiML Apps) that points to this server",
       "required": true
     }
-  },
-
+  }
 }
