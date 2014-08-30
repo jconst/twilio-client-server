@@ -1,6 +1,5 @@
 <?php
 require 'vendor/autoload.php';
-
 header('Content-Type: application/json');
 
 // AccountSid and AuthToken can be found in your account dashboard
@@ -17,7 +16,7 @@ $clientName = $_REQUEST['clientName'] ?: 'default';
 $filename = 'clients.txt';
 $lines = explode(",", @file_get_contents($filename));
 array_unshift($lines, $clientName);
-$clients = array_unique(array_filter($lines));
+$clients = array_slice(array_unique(array_filter($lines)), 0, 10);
 file_put_contents($filename, implode(",", $clients));
 
 $capability = new Services_Twilio_Capability($accountSid, $authToken);
