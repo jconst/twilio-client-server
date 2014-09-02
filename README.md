@@ -6,7 +6,9 @@ Get all the necessary server-side junk for Twilio Client set up quickly and easi
 
 Prerequisites
 -------------
-Make sure you have [created a Twilio account](https://www.twilio.com/try-twilio) and [a TwiML application](https://www.twilio.com/user/account/apps/) to handle your call.
+Make sure you have [created a Twilio account](https://www.twilio.com/try-twilio) and [a TwiML application](https://www.twilio.com/user/account/apps/). You will need your Twilio Account SID & token, as well as your app SID, to deploy this server. After deploying your server, be sure to point your TwiML app's "Voice Request URL" back to twiml.php on your server, like so:
+
+<img src="ss1.png" />
 
 Usage
 -----
